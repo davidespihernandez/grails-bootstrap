@@ -1,51 +1,119 @@
 <!doctype html>
-<html lang="en" class="no-js">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>
-        <g:layoutTitle default="Grails"/>
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<html lang="en">
+    <head>
+        <title>
+            <g:layoutTitle default="Grails + bootstrap"/>
+        </title>
 
-    <asset:stylesheet src="application.css"/>
 
-    <g:layoutHead/>
-</head>
-<body>
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+       <meta name="description" content="Bootstrap Admin App + jQuery">
+       <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+       <title>Grails + Bootstrap</title>
+       <!-- =============== VENDOR STYLES ===============-->
+       <!-- FONT AWESOME-->
+       <asset:stylesheet src="vendor/fontawesome/css/font-awesome.min.css" />
+       <!-- SIMPLE LINE ICONS-->
+       <asset:stylesheet src="vendor/simple-line-icons/css/simple-line-icons.css" />
+       <!-- ANIMATE.CSS-->
+       <asset:stylesheet src="vendor/animate.css/animate.min.css" />
+       <!-- WHIRL (spinners)-->
+       <asset:stylesheet src="vendor/whirl/dist/whirl.css" />
+       <!-- =============== BOOTSTRAP STYLES ===============-->
+       <asset:stylesheet src="bootstrap.css" />
+       <!-- =============== APP STYLES ===============-->
+       <asset:stylesheet src="app.css" />
 
-    <div class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/#">
-                    <i class="fa grails-icon">
-                        <asset:image src="grails-cupsonly-logo-white.svg"/>
-                    </i> Grails
-                </a>
-            </div>
-            <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
-                <ul class="nav navbar-nav navbar-right">
-                    <g:pageProperty name="page.nav" />
-                </ul>
-            </div>
+        <g:layoutHead/>
+    </head>
+
+    <body>
+       <div class="wrapper">
+           <!-- top navbar-->
+           <header class="topnavbar-wrapper">
+               <!-- START Top Navbar-->
+               <nav role="navigation" class="navbar topnavbar">
+                   <!-- START navbar header-->
+                   <div class="navbar-header">
+                       <a href="#/" class="navbar-brand">
+                           <div class="brand-logo">
+                               <asset:image src="logo.png" class="img-responsive" alt="App Logo"/>
+                           </div>
+                           <div class="brand-logo-collapsed">
+                               <asset:image src="logo-single.png" class="img-responsive" alt="App Logo"/>
+                           </div>
+                       </a>
+                   </div>
+                   <!-- END navbar header-->
+               </nav>
+               <!-- END Top Navbar-->
+           </header>
+
+           <aside class="aside">
+               <!-- START Sidebar (left)-->
+               <div class="aside-inner">
+                   <nav data-sidebar-anyclick-close="" class="sidebar">
+                       <!-- START sidebar nav-->
+                       <ul class="nav">
+                           <li class=" ">
+                               <a href="#master" title="Master tables" data-toggle="collapse">
+                                   <em class="icon-grid"></em>
+                                   <span>Master tables</span>
+                               </a>
+                               <ul id="master" class="nav sidebar-subnav collapse">
+                                   <li class="sidebar-subnav-header">Master tables</li>
+                                   <li class=" ">
+                                       <g:link controller="product" action="index">Products</g:link>
+                                   </li>
+                                   <li class=" ">
+                                       <g:link controller="product" action="index">Other...</g:link>
+                                   </li>
+                               </ul>
+                           </li>
+                       </ul>
+                       <!-- END sidebar nav-->
+                   </nav>
+               </div>
+               <!-- END Sidebar (left)-->
+           </aside>
+
+           <section>
+                <!-- Page content-->
+                <div class="content-wrapper">
+                    <g:layoutBody/>
+                </div>
+
+            </section>
+           <footer>
+               <span>&copy; 2016 - David </span>
+           </footer>
         </div>
-    </div>
 
-    <g:layoutBody/>
+   <!-- =============== VENDOR SCRIPTS ===============-->
+   <!-- MODERNIZR-->
+    <asset:javascript src="vendor/modernizr/modernizr.custom.js"/>
+   <!-- MATCHMEDIA POLYFILL-->
+    <asset:javascript src="vendor/matchMedia/matchMedia.js"/>
+   <!-- JQUERY-->
+    <asset:javascript src="vendor/jquery/dist/jquery.js"/>
+   <!-- BOOTSTRAP-->
+    <asset:javascript src="vendor/bootstrap/dist/js/bootstrap.js"/>
+   <!-- STORAGE API-->
+    <asset:javascript src="vendor/jQuery-Storage-API/jquery.storageapi.js"/>
+   <!-- JQUERY EASING-->
+    <asset:javascript src="vendor/jquery.easing/js/jquery.easing.js"/>
+   <!-- ANIMO-->
+    <asset:javascript src="vendor/animo.js/animo.js"/>
+   <!-- SLIMSCROLL-->
+    <asset:javascript src="vendor/slimScroll/jquery.slimscroll.min.js"/>
+   <!-- =============== PAGE VENDOR SCRIPTS ===============-->
+   <!-- SPARKLINE-->
+    <asset:javascript src="vendor/sparkline/index.js"/>
+   <!-- CLASSY LOADER-->
+    <asset:javascript src="vendor/jquery-classyloader/js/jquery.classyloader.min.js"/>
+   <!-- =============== APP SCRIPTS ===============-->
 
-    <div class="footer" role="contentinfo"></div>
 
-    <div id="spinner" class="spinner" style="display:none;">
-        <g:message code="spinner.alt" default="Loading&hellip;"/>
-    </div>
-
-    <asset:javascript src="application.js"/>
-
-</body>
+    </body>
 </html>
