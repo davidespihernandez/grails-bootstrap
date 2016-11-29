@@ -2,21 +2,23 @@
 <html>
     <head>
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'product.label', default: 'Product')}" />
-        <title><g:message code="default.list.label" args="[entityName]" /></title>
+        <title><g:message code="product.list" /></title>
     </head>
     <body>
-        <a href="#list-product" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
+        <h3><g:message code="product.list" />
+            <small>The complete list of products</small>
+        </h3>
+        <div class="row">
+            <div class="col-sm-12">
+                <g:link class="btn btn-success btn-labeled" action="create">
+                    <span class="btn-label"><i class="fa fa-plus"></i>
+                    </span><g:message code="product.create" />
+                </g:link>
+            </div>
         </div>
         <div id="list-product" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
+                <div role="alert" class="alert alert-info">${flash.message}</div>
             </g:if>
             <f:table collection="${productList}" />
 
