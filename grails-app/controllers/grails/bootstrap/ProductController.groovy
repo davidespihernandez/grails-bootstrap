@@ -7,10 +7,12 @@ import grails.transaction.Transactional
 class ProductController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    ProductService productService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Product.list(params), model:[productCount: Product.count()]
+        List<Product> allProducts = productService.findAllProducts()
+        respond model:[productList: allProducts, productCount: allProducts.size()]
     }
 
     def show(Product product) {

@@ -5,11 +5,11 @@ import grails.transaction.Transactional
 @Transactional
 class ProductService {
 
-    def findAllProducts() {
+    List<Product> findAllProducts() {
         Product.findAll()
     }
 
-    def createProduct(parameters){
+    Product createProduct(parameters){
         Product product = Product.findByCode(parameters.code)
         if(product){
             return(product)

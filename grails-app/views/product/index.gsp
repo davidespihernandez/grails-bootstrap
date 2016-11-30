@@ -5,7 +5,8 @@
         <title><g:message code="product.list" /></title>
     </head>
     <body>
-        <h3><g:message code="product.list" />
+        <h3>
+            <g:message code="product.list" />
             <small>The complete list of products</small>
         </h3>
         <div class="row">
@@ -16,14 +17,15 @@
                 </g:link>
             </div>
         </div>
-        <div id="list-product" class="content scaffold-list" role="main">
-            <g:if test="${flash.message}">
-                <div role="alert" class="alert alert-info">${flash.message}</div>
-            </g:if>
-            <f:table collection="${productList}" />
-
-            <div class="pagination">
-                <g:paginate total="${productCount ?: 0}" />
+        <div class="row">
+            <div class="col-sm-12">
+                <g:if test="${flash.message}">
+                    <div role="alert" class="alert alert-info">${flash.message}</div>
+                </g:if>
+                <g:render template="tableTemplate" model="[productList: productList]" />
+                <div class="pagination">
+                    <g:paginate total="${productCount ?: 0}" />
+                </div>
             </div>
         </div>
     </body>
