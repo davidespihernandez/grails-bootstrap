@@ -12,7 +12,7 @@ class ProductController {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         List<Product> allProducts = productService.findAllProducts()
-        respond model:[productList: allProducts, productCount: allProducts.size()]
+        render(view:"index", model:[productList: allProducts, productCount: allProducts.size()])
     }
 
     def show(Product product) {

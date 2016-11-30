@@ -17,6 +17,7 @@
                 </g:link>
             </div>
         </div>
+        <br />
         <div class="row">
             <div class="col-sm-12">
                 <g:if test="${flash.message}">

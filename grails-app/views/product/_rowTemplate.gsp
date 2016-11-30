@@ -1,9 +1,9 @@
 <tr>
     <td>
-        <g:link action="show" id="${product.id}">${product.id}</g:link>
+        ${product.id}
     </td>
     <td>
-        ${product.code}
+        <g:link action="show" id="${product.id}">${product.code}</g:link>
     </td>
     <td>
         ${product.description}
