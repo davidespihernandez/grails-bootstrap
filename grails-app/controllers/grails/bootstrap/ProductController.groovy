@@ -66,7 +66,7 @@ class ProductController {
             return
         }
 
-        product.save flush:true
+        productService.saveProduct(product)
 
         request.withFormat {
             form multipartForm {
@@ -79,14 +79,13 @@ class ProductController {
 
     @Transactional
     def delete(Product product) {
-
         if (product == null) {
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
 
-        product.delete flush:true
+        productService.deleteProduct(product)
 
         request.withFormat {
             form multipartForm {

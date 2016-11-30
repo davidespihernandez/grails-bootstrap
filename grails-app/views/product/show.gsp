@@ -49,18 +49,12 @@
                         <div class="required">* Required fields</div>
                     </div>
                     <div class="panel-footer">
-                        <span>
-                            <g:link class="btn btn-primary btn-labeled" action="edit" resource="${this.product}">
-                                <span class="btn-label"><i class="fa fa-edit"></i></span>
+                        <g:form url="[resource: this.product, action:'delete']" method="DELETE">
+                            <g:link class="btn btn-primary" action="edit" resource="${this.product}">
                                 <g:message code="default.button.edit.label" default="Edit" />
                             </g:link>
-                        </span>
-                        <span>
-                            <g:link controller="product" action="delete" method="delete" class="btn btn-danger btn-labeled" resource="${this.product}" onclick="return confirm('Are you sure?');">
-                                <span class="btn-label"><i class="fa fa-times"></i></span>
-                                <g:message code="default.button.delete.label" default="Delete" />
-                            </g:link>
-                        </span>
+                            <g:actionSubmit controller="product" action="delete" value="${message(code: 'default.button.delete.label')}" class="btn btn-danger pull-right" resource="${this.product}" onclick="return confirm('Are you sure?');" />
+                        </g:form>
                     </div>
                 </div>
             </div>
