@@ -37,14 +37,14 @@ class ProductController {
             return
         }
 
-        product.save flush:true
+        Product newProduct = productService.saveProduct(product)
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'product.label', default: 'Product'), product.id])
-                redirect product
+                flash.message = message(code: 'default.created.message', args: [message(code: 'product.label', default: 'Product'), newProduct.id])
+                redirect newProduct
             }
-            '*' { respond product, [status: CREATED] }
+            '*' { respond newProduct, [status: CREATED] }
         }
     }
 

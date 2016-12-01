@@ -20,9 +20,7 @@
         <br />
         <div class="row">
             <div class="col-sm-12">
-                <g:if test="${flash.message}">
-                    <div role="alert" class="alert alert-info">${flash.message}</div>
-                </g:if>
+                <g:render template="/shared/notificationTemplate" />
                 <g:render template="tableTemplate" model="[productList: productList]" />
                 <div class="pagination">
                     <g:paginate total="${productCount ?: 0}" />

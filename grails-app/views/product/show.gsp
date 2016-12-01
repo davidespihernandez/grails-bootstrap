@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="layout" content="main" />
-        <title><g:message code="product.list" /></title>
+        <title>Product detail</title>
     </head>
     <body>
         <h3>
@@ -28,25 +28,11 @@
         <br />
         <div class="row">
             <div class="col-sm-12">
+                <g:render template="/shared/notificationTemplate" />
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h1>${product.code}</h1></div>
+                    <div class="panel-heading">Product: ${product.code}</div>
                     <div class="panel-body">
-                        <g:if test="${flash.message}">
-                            <div role="alert" class="alert alert-info">${flash.message}</div>
-                        </g:if>
-                        <div class="form-group">
-                            <label class="control-label">Id *</label>
-                            <g:textField name="id" value="${product.id}" required class="form-control" disabled="true" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Code *</label>
-                            <g:textField name="code" value="${product.code}" required class="form-control" disabled="true" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Description *</label>
-                            <g:textField name="description" value="${product.description}" required class="form-control" disabled="true" />
-                        </div>
-                        <div class="required">* Required fields</div>
+                        <g:render template="formTemplate" model="[product: product, disabled: true]" />
                     </div>
                     <div class="panel-footer">
                         <g:form url="[resource: this.product, action:'delete']" method="DELETE">
