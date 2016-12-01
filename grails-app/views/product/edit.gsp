@@ -38,14 +38,14 @@
                 </g:hasErrors>
                 <div class="panel panel-default">
                     <div class="panel-heading">Product: ${product.code}</div>
-                    <div class="panel-body">
-                        <g:render template="formTemplate" model="[product: product, disabled: false]" />
-                    </div>
-                    <div class="panel-footer">
-                        <g:form url="[resource: this.product, action:'save']" method="PUT">
-                            <g:actionSubmit controller="product" action="save" value="${message(code: 'default.button.update.label')}" class="btn btn-primary" resource="${this.product}" />
-                        </g:form>
-                    </div>
+                    <g:form url="[resource: this.product, action:'update']" method="PUT">
+                        <div class="panel-body">
+                            <g:render template="formTemplate" model="[product: product, disabled: false]" />
+                        </div>
+                        <div class="panel-footer">
+                            <g:actionSubmit controller="product" action="update" value="${message(code: 'default.button.update.label')}" class="btn btn-primary" resource="${this.product}" />
+                        </div>
+                    </g:form>
                 </div>
             </div>
         </div>

@@ -59,7 +59,6 @@ class ProductController {
             notFound()
             return
         }
-
         if (product.hasErrors()) {
             transactionStatus.setRollbackOnly()
             respond product.errors, view:'edit'

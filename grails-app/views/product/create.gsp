@@ -31,15 +31,15 @@
                     </ul>
                 </g:hasErrors>
                 <div class="panel panel-default">
-                    <div class="panel-heading">Product: ${product.code}</div>
-                    <div class="panel-body">
-                        <g:render template="formTemplate" model="[product: product, disabled: false]" />
-                    </div>
-                    <div class="panel-footer">
-                        <g:form url="[resource: this.product, action:'save']" method="POST">
+                    <g:form url="[resource: this.product, action:'save']" method="POST">
+                        <div class="panel-heading">Product info</div>
+                        <div class="panel-body">
+                            <g:render template="formTemplate" model="[product: product, disabled: false]" />
+                        </div>
+                        <div class="panel-footer">
                             <g:actionSubmit controller="product" action="save" value="${message(code: 'default.button.create.label')}" class="btn btn-primary" resource="${this.product}" />
-                        </g:form>
-                    </div>
+                        </div>
+                    </g:form>
                 </div>
             </div>
         </div>
