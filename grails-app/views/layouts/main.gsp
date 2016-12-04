@@ -45,9 +45,22 @@
                            </div>
                        </a>
                    </div>
-                   <!-- END navbar header-->
+                   <div class="nav-wrapper">
+                       <ul class="nav navbar-nav navbar-right">
+                           <!-- START lock screen-->
+                           <li class="dropdown">
+                               <sec:ifLoggedIn>
+                                   <g:link controller="logout">
+                                       <em class="icon-logout"></em> &nbsp;
+                                       <sec:username/>
+                                   </g:link>
+                               </sec:ifLoggedIn>
+                           </li>
+                       </ul>
+                   </div>
+               <!-- END navbar header-->
                </nav>
-               <!-- END Top Navbar-->
+           <!-- END Top Navbar-->
            </header>
 
            <aside class="aside">

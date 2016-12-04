@@ -1,3 +1,6 @@
-// Place your Spring DSL code here
+import grails.bootstrap.MyUserDetailsService
+
 beans = {
+    userDetailsService(MyUserDetailsService)
 }
+
