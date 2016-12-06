@@ -51,7 +51,7 @@ class BootStrap {
                 '/logout', '/logout.*', '/logout/*']) {
             securityService.createRequestmap(url: url, configAttribute: 'permitAll')
         }
-        securityService.createRequestmap(url: '/product/**', configAttribute: "isAuthenticated()")
+        securityService.createRequestmap(url: '/**', configAttribute: "isAuthenticated()")
 
         log.info('Ending bootstrap')
     }

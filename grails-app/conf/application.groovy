@@ -31,3 +31,5 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 ]
 
 grails.plugin.springsecurity.logout.postOnly = false
+//grails.plugin.springsecurity.ui.gsp.layoutRegister = 'main'
+//grails.plugin.springsecurity.ui.gsp.layoutUi = 'main'
