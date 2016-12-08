@@ -8056,3 +8056,71 @@ fieldset[disabled] .flatdoc-wrapper .button.focus {
   color: #23b7e5;
   background-color: #fff;
 }
+
+.paginateButtons {
+  display: inline-block;
+  padding-left: 0;
+  margin: 21px 0;
+  border-radius: 4px;
+}
+.paginateButtons > a {
+  display: inline;
+}
+.paginateButtons > a,
+.paginateButtons > span {
+  position: relative;
+  float: left;
+  padding: 6px 16px;
+  line-height: 1.52857143;
+  text-decoration: none;
+  color: #515253;
+  background-color: #fff;
+  border: 1px solid #eee;
+  margin-left: -1px;
+}
+.paginateButtons > span {
+  margin-left: 0;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+.paginateButtons > a:last-child {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.paginateButtons > a:hover,
+.paginateButtons > span:hover,
+.paginateButtons > a:focus,
+.paginateButtons > span:focus {
+  z-index: 2;
+  color: #1b72e2;
+  background-color: #fafafa;
+  border-color: #eee;
+}
+.paginateButtons > .currentStep > a,
+.paginateButtons > .currentStep > span,
+.paginateButtons > .currentStep > a:hover,
+.paginateButtons > .currentStep > span:hover,
+.paginateButtons > .currentStep > a:focus,
+.paginateButtons > .currentStep > span:focus {
+  z-index: 3;
+  color: #fff;
+  background-color: #5d9cec;
+  border-color: #5d9cec;
+  cursor: default;
+}
+.paginateButtons > .disabled > span,
+.paginateButtons > .disabled > span:hover,
+.paginateButtons > .disabled > span:focus,
+.paginateButtons > .disabled > a,
+.paginateButtons > .disabled > a:hover,
+.paginateButtons > .disabled > a:focus {
+  color: #e4eaec;
+  background-color: #fff;
+  border-color: #eee;
+  cursor: not-allowed;
+}
+
+
+
+
+

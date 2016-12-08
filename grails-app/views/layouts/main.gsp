@@ -83,6 +83,17 @@
                                        <g:link controller="product" action="index">Other...</g:link>
                                    </li>
                                </ul>
+                               <a href="#security" title="Security" data-toggle="collapse">
+                                   <em class="icon-lock"></em>
+                                   <span>Security</span>
+                               </a>
+                               <ul id="security" class="nav sidebar-subnav collapse">
+                                   <li class="sidebar-subnav-header">Security</li>
+                                   <li class=" ">
+                                       <g:link controller="requestmap">Request map</g:link>
+                                   </li>
+                               </ul>
+
                            </li>
                        </ul>
                        <!-- END sidebar nav-->
