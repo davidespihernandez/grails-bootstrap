@@ -10,6 +10,7 @@
 	</h3>
 	<div class="row">
 		<div class="col-sm-12">
+			<g:render template="/shared/notificationTemplate" />
 			<g:form action="search" controller="requestmap" method="POST" name="search" id="search">
 			<div class="panel panel-default">
 				<div class="panel-body">
@@ -37,7 +38,12 @@
 					</div>
 				</div>
 				<div class="panel-footer">
-					<g:actionSubmit controller="requestmap" action="search" value="Search" class="btn btn-primary" />
+					<div class="row">
+						<div class="col-sm-12">
+							<g:actionSubmit controller="requestmap" action="search" value="Search" class="btn btn-primary pull-left" />
+							<g:link action="create" class="btn btn-primary pull-right">Create</g:link>
+						</div>
+					</div>
 				</div>
 			</div>
 			</g:form>

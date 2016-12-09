@@ -412,7 +412,7 @@ class SecurityUiTagLib {
 								${g.paginate(total: total, params: pageScope.queryParams)}
 							</div>
 						</div>
-						<div class="col-lg-4 pull-right">
+						<div class="col-lg-4 text-right">
 							$summary
 						</div>
 					</div>

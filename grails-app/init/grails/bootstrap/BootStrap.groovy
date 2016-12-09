@@ -52,6 +52,7 @@ class BootStrap {
             securityService.createRequestmap(url: url, configAttribute: 'permitAll')
         }
         securityService.createRequestmap(url: '/**', configAttribute: "isAuthenticated()")
+//        securityService.createRequestmap(url: '/requestmap/search', configAttribute: "hasRole('ROLE_ADMIN')")
 
         log.info('Ending bootstrap')
     }

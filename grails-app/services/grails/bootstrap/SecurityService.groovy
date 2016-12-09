@@ -4,10 +4,13 @@ import grails.bootstrap.security.Requestmap
 import grails.bootstrap.security.Role
 import grails.bootstrap.security.User
 import grails.bootstrap.security.UserRole
+import grails.plugin.springsecurity.SpringSecurityService
 import grails.transaction.Transactional
+import org.springframework.http.HttpMethod
 
 @Transactional
 class SecurityService{
+    SpringSecurityService springSecurityService
     User findUserByUsername(String username){
         User.findByUsername(username)
     }
@@ -53,6 +56,30 @@ class SecurityService{
             return(existing)
         }
         new Requestmap(url: parameters.url, configAttribute: parameters.configAttribute).save(flush: true)
+    }
+
+    def deleteRequestmap(Long requestmapId){
+        Requestmap rm = Requestmap.get(requestmapId)
+        if(rm){
+            rm.delete(flush: true)
+            springSecurityService.clearCachedRequestmaps()
+        }
+    }
+
+    def updateRequestmap(parameters){
+        Requestmap rm = Requestmap.get(parameters.id)
+        if(rm){
+            rm.setUrl(parameters.url)
+            rm.setConfigAttribute(parameters.configAttribute)
+            if(parameters.httpMethod==null || parameters.httpMethod=="null"){
+                rm.setHttpMethod(null)
+            }
+            else{
+                rm.setHttpMethod(HttpMethod.valueOf(parameters.httpMethod))
+            }
+            rm.save(flush: true)
+            springSecurityService.clearCachedRequestmaps()
+        }
     }
 
 }
