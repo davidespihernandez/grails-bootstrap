@@ -1,5 +1,6 @@
 package grails.bootstrap
 
+import grails.bootstrap.security.GroupRole
 import grails.bootstrap.security.Requestmap
 import grails.bootstrap.security.Role
 import grails.bootstrap.security.User
@@ -81,5 +82,30 @@ class SecurityService{
             springSecurityService.clearCachedRequestmaps()
         }
     }
+
+    Role createRole(parameters){
+        Role existing = Role.findByAuthority(parameters.authority)
+        if(existing){
+            return(existing)
+        }
+        new Role(authority: parameters.authority).save(flush: true)
+    }
+
+    def deleteRole(Long roleId){
+        Role role = Role.get(roleId)
+        if(role){
+            GroupRole.deleteAll(GroupRole.findAllByRole(role))
+            role.delete(flush: true)
+        }
+    }
+
+    def updateRole(parameters){
+        Role role = Role.get(parameters.id)
+        if(role){
+            role.setAuthority(parameters.authority)
+            role.save(flush: true)
+        }
+    }
+
 
 }

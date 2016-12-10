@@ -23,8 +23,8 @@ class RequestmapController extends grails.plugin.springsecurity.ui.RequestmapCon
         render(view: "search")
     }
     def save(){
-        log.info("Update requestmap ${params.id}")
-        flash.message = 'Requestmap updated!'
+        log.info("Create requestmap ${params}")
+        flash.message = 'Requestmap created!'
         try{
             securityService.createRequestmap(params)
         }

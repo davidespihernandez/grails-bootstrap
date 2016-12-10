@@ -90,7 +90,10 @@
                                <ul id="security" class="nav sidebar-subnav collapse">
                                    <li class="sidebar-subnav-header">Security</li>
                                    <li class=" ">
-                                       <g:link controller="requestmap">Request map</g:link>
+                                       <g:link controller="role">Roles</g:link>
+                                   </li>
+                                   <li class=" ">
+                                       <g:link controller="requestmap">Request maps</g:link>
                                    </li>
                                </ul>
 
