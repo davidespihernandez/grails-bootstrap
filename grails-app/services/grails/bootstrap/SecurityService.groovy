@@ -1,5 +1,6 @@
 package grails.bootstrap
 
+import grails.bootstrap.security.Group
 import grails.bootstrap.security.GroupRole
 import grails.bootstrap.security.Requestmap
 import grails.bootstrap.security.Role
@@ -107,5 +108,26 @@ class SecurityService{
         }
     }
 
+    List<Group> findAllGroupByRole(Role role){
+        GroupRole.findAllByRole(role).group.sort{ a,b -> a.name <=> b.name }
+    }
+
+    List<User> findAllUserByRole(Role role){
+        UserRole.findAllByRole(role).user.sort{ a,b -> a.fullName <=> b.fullName }
+    }
+
+    Role findRoleById(Long id){
+        Role.get(id)
+    }
+
+    List<User> findAllUserNotInRole(Role role){
+        List<User> allUser = User.findAll().sort{ a,b -> a.fullName <=> b.fullName }
+        List<User> inRole = findAllUserByRole(role)
+        return(allUser - inRole)
+    }
+
+    User findUserById(Long id){
+        User.get(id)
+    }
 
 }
