@@ -1,6 +1,7 @@
 package security
 
 import grails.bootstrap.SecurityService
+import grails.bootstrap.security.Group
 import grails.bootstrap.security.GroupRole
 import grails.bootstrap.security.Role
 import grails.bootstrap.security.User
@@ -52,10 +53,11 @@ class RoleController extends grails.plugin.springsecurity.ui.RoleController {
     def edit(){
         Long roleId = Long.valueOf(params.id)
         Role role = securityService.findRoleById(roleId)
-        List<Role> roleGroups = securityService.findAllGroupByRole(role)
+        List<Group> roleGroups = securityService.findAllGroupByRole(role)
         List<User> roleUsers = securityService.findAllUserByRole(role)
         List<User> usersAvailable = securityService.findAllUserNotInRole(role)
-        render(view:"edit", model: [role: role, groups: roleGroups, users: roleUsers, usersAvailable: usersAvailable])
+        List<Group> groupsAvailable = securityService.findAllGroupNotInRole(role)
+        render(view:"edit", model: [role: role, groups: roleGroups, users: roleUsers, usersAvailable: usersAvailable, groupsAvailable: groupsAvailable])
     }
 
     def create(){
@@ -96,5 +98,40 @@ class RoleController extends grails.plugin.springsecurity.ui.RoleController {
         flash.message = "$deleted Users removed!"
         redirect(action: "edit", id: params.roleId)
     }
+
+    def removeGroups(){
+        Integer deleted = 0
+        Role role = securityService.findRoleById(Long.valueOf(params.roleId))
+        params.selectedGroups?.each{
+            Long groupId = Long.valueOf(it)
+            Group group = securityService.findGroupById(groupId)
+            securityService.deleteGroupRole(group, role)
+            deleted++
+        }
+        flash.message = "$deleted Groups removed!"
+        redirect(action: "edit", id: params.roleId)
+    }
+
+    def addGroup(){
+        Long roleId, groupId
+        try{
+            roleId = Long.valueOf(params.roleId)
+            groupId = Long.valueOf(params.groupCombobox)
+        }
+        catch(Exception e){
+            println "exception converting " + e.message
+            roleId = null
+            groupId = null
+        }
+        Role role = securityService.findRoleById(roleId)
+        Group group = securityService.findGroupById(groupId)
+        flash.message = "Error granting group"
+        if(role && group){
+            securityService.addGroupRole(group, role)
+            flash.message = "Group added!"
+        }
+        redirect(action: "edit", id: params.roleId)
+    }
+
 
 }

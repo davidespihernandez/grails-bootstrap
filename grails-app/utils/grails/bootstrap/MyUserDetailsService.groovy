@@ -29,10 +29,10 @@ class MyUserDetailsService implements GrailsUserDetailsService {
         User user = User.findByUsername(username)
         if (!user) throw new NoStackUsernameNotFoundException()
 
-        def roles = user.authorities
+//        def roles = user.authorities
 
         // or if you are using role groups:
-        // def roles = user.authorities.collect { it.authorities }.flatten().unique()
+         def roles = user.authorities.collect { it.authorities }.flatten().unique()
 
         def authorities = roles.collect {
             new SimpleGrantedAuthority(it.authority)

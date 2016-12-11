@@ -21,5 +21,6 @@ class Group implements Serializable {
 
 	static mapping = {
 		cache true
+		table 'sec_group'
 	}
 }

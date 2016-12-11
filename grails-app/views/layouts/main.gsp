@@ -93,6 +93,9 @@
                                        <g:link controller="role">Roles</g:link>
                                    </li>
                                    <li class=" ">
+                                       <g:link controller="group" action="search">Groups</g:link>
+                                   </li>
+                                   <li class=" ">
                                        <g:link controller="requestmap">Request maps</g:link>
                                    </li>
                                </ul>

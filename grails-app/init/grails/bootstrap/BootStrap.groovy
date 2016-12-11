@@ -1,5 +1,6 @@
 package grails.bootstrap
 
+import grails.bootstrap.security.Group
 import grails.bootstrap.security.Requestmap
 import grails.bootstrap.security.Role
 import grails.bootstrap.security.User
@@ -39,9 +40,16 @@ class BootStrap {
                 email: 'david.espi@atkloud.com',
                 fullName: 'Regular user'
         )
+
+        Group administrators = securityService.createGroup(name: 'Administrators')
+        Group regularUsers = securityService.createGroup(name: 'Regular users')
+
         securityService.grantRole(adminUser, adminRole)
         securityService.grantRole(adminUser, userRole)
         securityService.grantRole(regularUser, userRole)
+
+        securityService.addGroupRole(administrators, adminRole)
+        securityService.addGroupRole(regularUsers, userRole)
 
         //save all public url
         for (String url in [
