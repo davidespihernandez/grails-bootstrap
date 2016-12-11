@@ -221,4 +221,42 @@ class SecurityService{
         return(allGroup - inRole)
     }
 
+    def deleteUser(Long userId){
+        User user = User.get(userId)
+        if(user){
+            UserRole.deleteAll(UserRole.findAllByUser(user))
+            UserGroup.deleteAll(UserGroup.findAllByUser(user))
+            user.delete(flush: true)
+        }
+    }
+
+    User updateUser(parameters){
+        User existing = User.findByUsername(parameters.id)
+        if(existing){
+            existing.setProperties(parameters)
+            existing.save(flush: true)
+        }
+        return(existing)
+    }
+
+    List<Group> findAllGroupByUser(User user){
+        UserGroup.findAllByUser(user).group.sort{ a,b -> a.name <=> b.name }
+    }
+
+    List<Role> findAllRoleByUser(User user){
+        UserRole.findAllByUser(user).role.sort{ a,b -> a.authority <=> b.authority }
+    }
+
+    List<Role> findAllRoleNotInUser(User user){
+        List<Role> allRole = Role.findAll().sort{ a,b -> a.name <=> b.name }
+        List<Role> inUser = findAllRoleByUser(user)
+        return(allRole - inUser)
+    }
+
+    List<Group> findAllGroupNotInUser(User user){
+        List<Group> allGroup = Group.findAll().sort{ a,b -> a.name <=> b.name }
+        List<Group> inUser = findAllGroupByUser(user)
+        return(allGroup - inUser)
+    }
+
 }

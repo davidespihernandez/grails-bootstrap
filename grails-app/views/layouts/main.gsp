@@ -90,6 +90,9 @@
                                <ul id="security" class="nav sidebar-subnav collapse">
                                    <li class="sidebar-subnav-header">Security</li>
                                    <li class=" ">
+                                       <g:link controller="user">Users</g:link>
+                                   </li>
+                                   <li class=" ">
                                        <g:link controller="role">Roles</g:link>
                                    </li>
                                    <li class=" ">
