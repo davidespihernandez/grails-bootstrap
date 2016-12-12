@@ -91,7 +91,7 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
         Group group = securityService.findGroupById(groupId)
         flash.message = "Error granting group"
         if(user && group){
-            securityService.addGroupRole(group, user)
+            securityService.grantGroup(user, group)
             flash.message = "Group added!"
         }
         redirect(action: "edit", id: params.userId)

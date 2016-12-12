@@ -46,11 +46,7 @@
 								<thead>
 									<tr>
 										<s2ui:sortableColumn property='username' titleDefault='User name'/>
-									</tr>
-									<tr>
 										<s2ui:sortableColumn property='email' titleDefault='Email'/>
-									</tr>
-									<tr>
 										<s2ui:sortableColumn property='fullName' titleDefault='Full name'/>
 									</tr>
 								</thead>

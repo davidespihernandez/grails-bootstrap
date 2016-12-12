@@ -35,7 +35,7 @@ class SecurityService{
         if(existing){
             return(existing)
         }
-        new User(parameters).save(flush: true)
+        new User(parameters).save(flush: true, failOnError: true)
     }
 
     UserRole grantRole(User user, Role role){
@@ -231,10 +231,11 @@ class SecurityService{
     }
 
     User updateUser(parameters){
-        User existing = User.findByUsername(parameters.id)
+        User existing = User.get(parameters.id)
+        parameters.remove('password')
         if(existing){
             existing.setProperties(parameters)
-            existing.save(flush: true)
+            existing.save(flush: true, failOnError: true)
         }
         return(existing)
     }
@@ -248,7 +249,7 @@ class SecurityService{
     }
 
     List<Role> findAllRoleNotInUser(User user){
-        List<Role> allRole = Role.findAll().sort{ a,b -> a.name <=> b.name }
+        List<Role> allRole = Role.findAll().sort{ a,b -> a.authority <=> b.authority }
         List<Role> inUser = findAllRoleByUser(user)
         return(allRole - inUser)
     }
