@@ -23,19 +23,19 @@
 			<g:form controller="user" method="POST" action="save">
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<div class="form-group">
+						<div class="form-group ${hasErrors(bean:user, field:'username', 'has-error')}">
 							<label class="control-label">User</label>
 							<g:textField name='username' size='50' maxlength='255' autocomplete='off' class="form-control" value="${user?.username}"/>
 						</div>
-						<div class="form-group">
+						<div class="form-group ${hasErrors(bean:user, field:'password', 'has-error')}">
 							<label class="control-label">Password</label>
 							<g:passwordField name='password' size='50' maxlength='255' autocomplete='off' class="form-control" value="${user?.password}"/>
 						</div>
-						<div class="form-group">
+						<div class="form-group ${hasErrors(bean:user, field:'email', 'has-error')}">
 							<label class="control-label">Email</label>
 							<g:textField name='email' size='50' maxlength='255' autocomplete='off' class="form-control" value="${user?.email}" />
 						</div>
-						<div class="form-group">
+						<div class="form-group ${hasErrors(bean:user, field:'fullName', 'has-error')}">
 							<label class="control-label">Full name</label>
 							<g:textField name='fullName' size='50' maxlength='255' autocomplete='off' class="form-control" value="${user?.fullName}" />
 						</div>
