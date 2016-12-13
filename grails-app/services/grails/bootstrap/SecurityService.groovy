@@ -33,7 +33,7 @@ class SecurityService{
     User createUser(parameters){
         User existing = User.findByUsername(parameters.username)
         if(existing){
-            return(existing)
+            throw new Exception("User ${parameters.username} already exists")
         }
         new User(parameters).save(flush: true, failOnError: true)
     }

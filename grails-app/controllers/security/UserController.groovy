@@ -40,13 +40,22 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
     def save(){
         log.info("Create user ${params.id}")
         flash.message = 'User created!'
+        User user
         try{
-            securityService.createUser(params)
+            user = new User(params)
+            if(!user.validate()){
+                flash.message = 'Error creating user! '
+                render(view: "create", model: [user: user])
+            }
+            else{
+                securityService.createUser(params)
+                render(view: "search")
+            }
         }
         catch(Exception e){
-            flash.message = 'Error creating user -> ' + e.getMessage()
+            flash.message = 'Exception creating user! ' + e.getMessage()
+            render(view: "create", model: [user: user])
         }
-        render(view: "search")
     }
 
     def edit(){
@@ -56,6 +65,9 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
         List<Group> userRoles = securityService.findAllRoleByUser(user)
         List<User> rolesAvailable = securityService.findAllRoleNotInUser(user)
         List<Group> groupsAvailable = securityService.findAllGroupNotInUser(user)
+        if(params.user){
+            user = params.user
+        }
         render(view:"edit", model: [user: user, groups: userGroups, roles: userRoles, rolesAvailable: rolesAvailable, groupsAvailable: groupsAvailable])
     }
 
@@ -83,7 +95,6 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
             groupId = Long.valueOf(params.groupCombobox)
         }
         catch(Exception e){
-            println "exception converting " + e.message
             userId = null
             groupId = null
         }
@@ -117,7 +128,6 @@ class UserController extends grails.plugin.springsecurity.ui.UserController {
             userId = Long.valueOf(params.userId)
         }
         catch(Exception e){
-            println "exception converting " + e.message
             roleId = null
             userId = null
         }

@@ -39,7 +39,7 @@
 					</div>
 					<div class="panel-footer">
 						<g:actionSubmit action="update" value="Save" class="btn btn-primary" />
-						<g:actionSubmit action="delete" value="Delete" class="btn btn-danger pull-right" id='${user.id}'/>
+						<g:actionSubmit action="delete" value="Delete" class="btn btn-danger pull-right" id='${user.id}' onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 					</div>
 				</div>
 			</g:form>

@@ -22,24 +22,30 @@ class BootStrap {
         //roles and users
         Role adminRole = securityService.createRole('ROLE_ADMIN')
         Role userRole = securityService.createRole('ROLE_USER')
-        User adminUser = securityService.createUser(username: 'admin',
-                password: 'admin',
-                enabled: true,
-                accountExpired: false,
-                accountLocked: false,
-                passwordExpired: false,
-                email: 'david.espi@atkloud.com',
-                fullName: 'Admin user'
-        )
-        User regularUser = securityService.createUser(username: 'user',
-                password: 'user',
-                enabled: true,
-                accountExpired: false,
-                accountLocked: false,
-                passwordExpired: false,
-                email: 'david.espi@atkloud.com',
-                fullName: 'Regular user'
-        )
+        User adminUser = securityService.findUserByUsername('admin')
+        if(!adminUser){
+            adminUser = securityService.createUser(username: 'admin',
+                    password: 'admin',
+                    enabled: true,
+                    accountExpired: false,
+                    accountLocked: false,
+                    passwordExpired: false,
+                    email: 'david.espi@atkloud.com',
+                    fullName: 'Admin user'
+            )
+        }
+        User regularUser = securityService.findUserByUsername('user')
+        if(!regularUser){
+            regularUser = securityService.createUser(username: 'user',
+                    password: 'user',
+                    enabled: true,
+                    accountExpired: false,
+                    accountLocked: false,
+                    passwordExpired: false,
+                    email: 'david.espi@atkloud.com',
+                    fullName: 'Regular user'
+            )
+        }
 
         Group administrators = securityService.createGroup(name: 'Administrators')
         Group regularUsers = securityService.createGroup(name: 'Regular users')

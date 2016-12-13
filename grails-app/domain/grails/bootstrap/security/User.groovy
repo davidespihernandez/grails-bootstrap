@@ -45,7 +45,7 @@ class User implements Serializable  {
 		password blank: false, password: true
 		username blank: false, unique: true
 		fullName blank: true, nullable: true, maxSize: 255
-		email blank: false, nullable: false, maxSize: 255
+		email blank: false, nullable: false, maxSize: 255, email: true
 	}
 
 	static mapping = {
